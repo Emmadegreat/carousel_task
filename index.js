@@ -7,7 +7,7 @@ const control = document.getElementById('control');
 const carousel = document.getElementById('carousel');
 var slideNumber = 0;
 
-
+document.getElementById('date').innerHTML = new Date().getFullYear();
 
 nextBtn.addEventListener("click", () => {
 
@@ -67,7 +67,7 @@ var repeater = () => {
         };
         slides[slideNumber].classList.add("active");
         slideIcon[slideNumber].classList.add('active');
-    }, 2000);
+    }, 3000);
 }
 repeater();
 
@@ -75,9 +75,11 @@ repeater();
 
 carousel.addEventListener('mouseover', () => {
     clearInterval(playSlider);
-})
+    control.style.visibility = 'visible';
+});
 
 //function to start the autoreplay
-carousel.addEventListener('mouseover', () => {
+carousel.addEventListener('mouseout', () => {
     repeater();
+    control.style.visibility = 'hidden';
 })
