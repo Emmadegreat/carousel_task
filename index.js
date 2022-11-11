@@ -47,3 +47,37 @@ prevBtn.addEventListener("click", () => {
     slides[slideNumber].classList.add("active");
     slideIcon[slideNumber].classList.add('active');
 });
+
+//image autoplay function
+var playSlider;
+var repeater = () => {
+    playSlider = setInterval(function(){
+        slides.forEach((slide) => {
+            slide.classList.remove('active');
+        });
+
+        slideIcon.forEach((slideicon) => {
+            slideicon.classList.remove('active');
+        });
+
+        slideNumber++;
+
+        if (slideNumber > (numberOfSlides - 1)) {
+            slideNumber = 0;
+        };
+        slides[slideNumber].classList.add("active");
+        slideIcon[slideNumber].classList.add('active');
+    }, 2000);
+}
+repeater();
+
+//stopping the image autoplay
+
+carousel.addEventListener('mouseover', () => {
+    clearInterval(playSlider);
+})
+
+//function to start the autoreplay
+carousel.addEventListener('mouseover', () => {
+    repeater();
+})
